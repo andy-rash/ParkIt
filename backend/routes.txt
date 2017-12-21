@@ -1,0 +1,15 @@
+@app.route('/mycar', methods=['POST'])
+@auth.login_required
+def mycar():
+    if g.current_user is not None:
+        parking_info = ParkingInfo.query.filter_by(user_id = g.current.user_id).first()
+        if parking_info is not None:
+            car_info = MyCarInfo.query.filter_by(parking_info.parking_id)
+            if car_info is not None:    
+                response = {"parkingLot": str(parking_info.parking_lot), 
+                            "floor": str(parking_info.floor), 
+                            "imageURL": str(car_info.imageURL)}
+                return jsonify(response)
+            return bad_request("No image")
+        return bad_request("User not checked in")
+    return unauthorized('Invalid credentials - no user for which to get setting')
