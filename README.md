@@ -1,6 +1,6 @@
 # ParkIt
 
-A simple application to help find parking on the Southern Methodist University campus.
+A simple iOS app to help find parking on campus at Southern Methodist University.
 
 ## Backend
 Uses a modified LEMP stack:
